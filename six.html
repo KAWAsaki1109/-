@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <title>六曜掌定位</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: #f7f7f7;
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hand-img {
+            width: 730px;
+            /* 圖片放大了 */
+        }
+
+        .label {
+            position: absolute;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background-color: #eee;
+            color: black;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .active {
+            background-color: red !important;
+            color: white !important;
+        }
+
+        /* 六曜對應座標（根據圖片調整） */
+        .da-an {
+            top: 330px;
+            left: 270px;
+        }
+
+        .liulian {
+            top: 190px;
+            left: 275px;
+        }
+
+        .suxi {
+            top: 160px;
+            left: 330px;
+        }
+
+        .chikou {
+            top: 180px;
+            left: 380px;
+        }
+
+        .xiaoji {
+            top: 330px;
+            left: 385px;
+        }
+
+        .kongwang {
+            top: 330px;
+            left: 330px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>六曜掌定位</h2>
+
+    <div class="container">
+        <img src="hand.png" alt="手掌圖" class="hand-img">
+        <div class="label da-an">大安</div>
+        <div class="label liulian">流連</div>
+        <div class="label suxi">速喜</div>
+        <div class="label chikou">赤口</div>
+        <div class="label xiaoji">小吉</div>
+        <div class="label kongwang">空亡</div>
+
+    </div>
+
+    <script>
+        const now = new Date();
+        const hour = now.getHours();
+        const timeIndex = Math.floor((hour + 1) % 24 / 2);
+        const timeNumber = timeIndex + 1;
+        const lunarDay = now.getDate(); // 模擬農曆日
+
+        const yaoIndex = (4 + lunarDay + timeNumber - 1) % 6;
+        const yaoClasses = ["da-an", "liulian", "suxi", "chikou", "xiaoji", "kongwang"];
+
+        const target = document.querySelector("." + yaoClasses[yaoIndex]);
+        if (target) target.classList.add("active");
+    </script>
+
+</body>
+
+</html>
